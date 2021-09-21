@@ -1,0 +1,11 @@
+server:
+  port: 8080
+logging:
+  level:
+    root: debug
+    org:
+      springframework:
+        boot:
+          autoconfigure: error
+
+          
