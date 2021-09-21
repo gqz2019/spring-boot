@@ -8,10 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springboot-consumer" />
+        <module name="eureka-server" />
         <module name="springboot-provider" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="15">
+      <module name="eureka-server" target="11" />
       <module name="spring-boot" target="11" />
       <module name="springboot-consumer" target="11" />
       <module name="springboot-provider" target="11" />
@@ -19,6 +21,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka-server" options="-parameters" />
       <module name="spring-boot" options="" />
       <module name="springboot-consumer" options="-parameters" />
       <module name="springboot-provider" options="-parameters" />

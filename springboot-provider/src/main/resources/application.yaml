@@ -7,5 +7,30 @@ logging:
       springframework:
         boot:
           autoconfigure: error
+spring:
+  application:
+    name: provider
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/gqz
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 5
 
-          
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://gqz2019.top:8090/eureka
+
+  instance:
+    hostname: gqz2019.top
+    prefer-ip-address: true
