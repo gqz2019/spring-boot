@@ -1,6 +1,8 @@
 package com.gqz.springbootconsumer.controller;
 
+import com.gqz.springbootconsumer.feign.BasicClient;
 import com.gqz.springbootconsumer.pojo.User;
+import com.netflix.discovery.converters.Auto;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -20,13 +22,17 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("movie")
-public class MovieController {
+public class MovieController{
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
     private DiscoveryClient discoveryClient;
+    @Autowired
+    private BasicClient basicClient;
+
+
     @GetMapping("look")
-    @HystrixCommand(fallbackMethod = "defaultMethod")
+//    @HystrixCommand(fallbackMethod = "defaultMethod")
     public User look(){
 
         List<ServiceInstance> instances = discoveryClient.getInstances("provider");
@@ -34,7 +40,9 @@ public class MovieController {
         ServiceInstance serviceInstance = instances.get(0);
         System.out.println(serviceInstance.getUri());
 
-        User user = restTemplate.getForObject("http://localhost:8080/user/221", User.class);
+//        User user = restTemplate.getForObject("http://localhost:8080/user/221", User.class);
+
+        User user = basicClient.findById(221);
 
         return user;
     }

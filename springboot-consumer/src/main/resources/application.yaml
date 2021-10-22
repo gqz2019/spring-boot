@@ -16,3 +16,21 @@ eureka:
 spring:
   application:
     name: consumer
+
+feign:
+  circuitbreaker:
+    enabled: true
+
+
+# 修改服务地址轮询策略，默认是轮询，配置之后变随机
+user-provider:
+  ribbon:
+    #轮询
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+    ConnectTimeout: 10000 # 连接超时时间
+    ReadTimeout: 2000 # 数据读取超时时间
+    MaxAutoRetries: 1 # 最大重试次数(第一个服务)
+    MaxAutoRetriesNextServer: 0 # 最大重试下一个服务次数(集群的情况才会用到)
+    OkToRetryOnAllOperations: false # 无论是请求超时或者socket read timeout都进行重试
+
+

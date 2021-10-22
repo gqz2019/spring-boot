@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: spring-es
+  data:
+    elasticsearch:
+      client:
+        reactive:
+          endpoints: http://127.0.0.1:8300
+          connection-timeout: 1000
+logging:
+  level:
+    com.gqz: debug
